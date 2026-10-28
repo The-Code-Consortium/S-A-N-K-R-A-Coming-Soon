@@ -479,21 +479,19 @@ input:focus-visible {
   line-height: 1.45;
 }
 
-.meta-directions-link {
+.meta-directions-link,
+.meta-email-link {
   color: var(--deep-forest);
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 600;
+  font-size: 0.95rem;
   transition: color var(--transition-smooth);
 }
 
-.meta-directions-link:hover {
+.meta-directions-link:hover,
+.meta-email-link:hover {
   color: var(--highland-terracotta);
-}
-
-.meta-email-link {
-  font-size: 0.88rem;
-  word-break: break-word;
 }
 
 .meta-sub {
