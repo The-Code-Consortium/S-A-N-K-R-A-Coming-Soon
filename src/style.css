@@ -491,6 +491,11 @@ input:focus-visible {
   color: var(--highland-terracotta);
 }
 
+.meta-email-link {
+  font-size: 0.88rem;
+  word-break: break-word;
+}
+
 .meta-sub {
   font-size: 0.82rem;
   color: var(--subtle-gray); /* Darkened for high contrast */
@@ -974,6 +979,10 @@ input:focus-visible {
   .info-row-container {
     padding: 1.5rem 1.25rem;
   }
+  .res-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
 
   .about-section {
     padding: 3rem 0;
@@ -985,17 +994,6 @@ input:focus-visible {
   .about-p {
     font-size: 0.96rem;
     line-height: 1.75;
-  }
-
-  .notify-section {
-    padding: 3rem 0;
-  }
-  .notify-input-wrap {
-    flex-direction: column;
-  }
-  .btn-notify {
-    padding: 0.85rem;
-    min-height: 44px;
   }
 
   .site-footer {

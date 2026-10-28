@@ -18,11 +18,7 @@ if (typeof window !== 'undefined') {
    SANKĀRA Highlands Retreat — Interactive Logic
    ========================================================================== */
 
-// FORM SUBMISSION ENDPOINT CONFIGURATION
-// Connect your preferred form service here (e.g. Formspree, Google Sheets, Netlify Forms):
-// Example: const FORM_ENDPOINT = 'https://formspree.io/f/your_form_id';
-// TODO: Replace with client's actual form submission endpoint URL.
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/reservations@sankarakandy.com';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // Set dynamic copyright year
@@ -85,86 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Notify early access form handler (Section B)
-  const notifyForm = document.getElementById('notify-form');
-  const notifyInput = document.getElementById('notify-input');
-  const notifyFeedback = document.getElementById('notify-feedback');
-  const btnNotify = document.getElementById('btn-notify');
-  const btnNotifyText = document.getElementById('btn-notify-text');
-  const notifyWrapper = document.getElementById('notify-wrapper');
 
-  if (notifyForm) {
-    notifyForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = notifyInput.value.trim();
-
-      // Standard RFC-compliant email validation
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-      if (!email) {
-        notifyFeedback.className = 'notify-feedback error';
-        notifyFeedback.textContent = 'Please enter your email address.';
-        notifyInput.focus();
-        return;
-      }
-
-      if (!emailPattern.test(email)) {
-        notifyFeedback.className = 'notify-feedback error';
-        notifyFeedback.textContent = 'Please enter a valid email address.';
-        notifyInput.focus();
-        return;
-      }
-
-      // Loading state: button disabled, text "SENDING..." per Section B
-      btnNotify.disabled = true;
-      btnNotifyText.textContent = 'SENDING...';
-      notifyFeedback.className = 'notify-feedback loading';
-      notifyFeedback.textContent = '';
-
-      // Check submission endpoint:
-      // Per Section B: "Do not fake a success response if the endpoint is empty; show the failure message instead."
-      if (!FORM_ENDPOINT || FORM_ENDPOINT.trim() === '') {
-        setTimeout(() => {
-          btnNotify.disabled = false;
-          btnNotifyText.textContent = 'Notify Me';
-          notifyFeedback.className = 'notify-feedback error';
-          notifyFeedback.textContent = 'Something went wrong. Please try again or call us on +94 77 758 5872.';
-        }, 500);
-        return;
-      }
-
-      // If an active backend endpoint is configured:
-      try {
-        const response = await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({ email: email, timestamp: new Date().toISOString() })
-        });
-
-        if (response.ok) {
-          // Success state: replace the form per Section B
-          if (notifyWrapper) {
-            notifyWrapper.innerHTML = `
-              <div class="notify-success-box">
-                <p>Thank you. We'll contact you when the website goes live.</p>
-              </div>
-            `;
-          }
-          showToast("Thank you for your interest in SANKĀRA.");
-        } else {
-          throw new Error('Server returned non-200');
-        }
-      } catch (err) {
-        btnNotify.disabled = false;
-        btnNotifyText.textContent = 'Notify Me';
-        notifyFeedback.className = 'notify-feedback error';
-        notifyFeedback.textContent = 'Something went wrong. Please try again or call us on +94 77 758 5872.';
-      }
-    });
-  }
 
   // Navbar subtle transparent frosted glass effect on scroll
   const header = document.querySelector('.simple-header');
