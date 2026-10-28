@@ -22,8 +22,7 @@ if (typeof window !== 'undefined') {
 // Connect your preferred form service here (e.g. Formspree, Google Sheets, Netlify Forms):
 // Example: const FORM_ENDPOINT = 'https://formspree.io/f/your_form_id';
 // TODO: Replace with client's actual form submission endpoint URL.
-// When left empty (''), the form safely displays the failure message requesting a phone call.
-const FORM_ENDPOINT = '';
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/reservations@sankarakandy.com';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Set dynamic copyright year
