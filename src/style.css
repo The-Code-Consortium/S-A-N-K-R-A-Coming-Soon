@@ -412,10 +412,10 @@ input:focus-visible {
 
 .corridor-img {
   width: 100%;
-  max-height: 480px;
   height: auto;
+  aspect-ratio: 1227 / 916;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center;
   display: block;
 }
 
@@ -971,8 +971,8 @@ input:focus-visible {
     box-shadow: 0 12px 36px -10px rgba(22, 48, 42, 0.12);
   }
   .corridor-img {
-    max-height: 290px;
-    object-position: center 42%;
+    max-height: none;
+    object-position: center;
   }
   .corridor-caption {
     padding: 0.65rem 0.85rem;
