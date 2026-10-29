@@ -405,7 +405,7 @@ input:focus-visible {
   position: relative;
   border-radius: 6px;
   overflow: hidden;
-  border: 1px solid rgba(158, 109, 83, 0.45);
+  border: 2px solid var(--deep-forest);
   box-shadow: 0 20px 50px -15px rgba(22, 48, 42, 0.14);
   background: #ffffff;
   transition: box-shadow var(--transition-smooth);
