@@ -7,4 +7,4 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
-Sitemap: https://sankarakandy.com/sitemap.xml
+Sitemap: https://www.sankarakandy.com/sitemap.xml
