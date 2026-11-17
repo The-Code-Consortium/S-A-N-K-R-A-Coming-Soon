@@ -143,17 +143,24 @@
           <picture>
             <source 
               type="image/webp" 
-              srcset="/hero2-640.webp 640w, /hero2.webp 743w" 
-              sizes="(max-width: 600px) 90vw, 520px"
+              srcset="/hero2-320.webp 320w, /hero2-400.webp 400w, /hero2-640.webp 640w, /hero2.webp 743w" 
+              sizes="(max-width: 360px) 90vw, (max-width: 600px) 320px, 400px"
+            >
+            <source 
+              type="image/jpeg" 
+              srcset="/hero2-320.jpg 320w, /hero2-400.jpg 400w, /hero2-640.jpg 640w, /hero2.jpg 743w" 
+              sizes="(max-width: 360px) 90vw, (max-width: 600px) 320px, 400px"
             >
             <img 
-              src="/hero2.jpg" 
+              src="/hero2-400.jpg" 
+              srcset="/hero2-320.jpg 320w, /hero2-400.jpg 400w, /hero2-640.jpg 640w, /hero2.jpg 743w"
+              sizes="(max-width: 360px) 90vw, (max-width: 600px) 320px, 400px"
               alt="SANKĀRA signature brushed brass plaque featuring handcrafted 4x4 checkered wood tiles" 
               class="corridor-img"
               loading="eager"
               fetchpriority="high"
-              width="743"
-              height="778"
+              width="400"
+              height="419"
             >
           </picture>
         </div>
