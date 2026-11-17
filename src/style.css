@@ -7,7 +7,7 @@
   /* Brand Palette (WCAG AA Compliant >= 4.5:1 contrast across all pairs) */
   --deep-forest: #16302a;             /* Exact forest green per spec */
   --deep-forest-hover: #10241f;
-  --champagne-gold: #9e6d53;
+  --champagne-gold: #885e47;          /* Darkened warm copper for WCAG AA >= 4.5:1 (5.33:1 on linen, 5.10:1 on sand) */
   --champagne-gold-light: #e5cbbf;    /* Lightened for high contrast on dark green */
   --highland-terracotta: #9a4533;
   --highland-terracotta-hover: #833929;
@@ -16,11 +16,11 @@
   --charcoal: #191b18;
   --slate-pine: #26322c;             /* Body text darkened for > 10:1 contrast */
   --subtle-gray: #38433d;            /* Sub-text darkened for > 8:1 contrast */
-  --border-subtle: rgba(158, 109, 83, 0.35);
+  --border-subtle: rgba(136, 94, 71, 0.35);
 
-  /* Muted WhatsApp Green to match luxury palette */
-  --wa-green: #1f8f55;
-  --wa-green-hover: #187544;         /* Slightly darker green on hover per spec */
+  /* Muted WhatsApp Green (WCAG AA Compliant >= 4.5:1: 6.12:1 with white text) */
+  --wa-green: #177042;
+  --wa-green-hover: #125934;         /* Darker green on hover */
 
   /* Typography (Curated 3 Font Families) */
   --font-wordmark: 'Montserrat', sans-serif;
@@ -339,18 +339,20 @@ input:focus-visible {
   box-shadow: 0 4px 16px rgba(22, 48, 42, 0.18);
 }
 
-/* Muted Deep Green for WhatsApp with darker hover (Section C) */
-.btn-res-wa {
+/* Muted Deep Green for WhatsApp with darker hover (WCAG AA compliant >= 4.5:1) */
+.btn-res-wa,
+#btn-whatsapp {
   background-color: var(--wa-green);
   color: #ffffff;
   border: 1px solid var(--wa-green);
 }
 
-.btn-res-wa:hover {
+.btn-res-wa:hover,
+#btn-whatsapp:hover {
   background-color: var(--wa-green-hover);
   border-color: var(--wa-green-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(24, 117, 68, 0.25);
+  box-shadow: 0 4px 16px rgba(23, 112, 66, 0.28);
 }
 
 .btn-icon {
@@ -397,10 +399,10 @@ input:focus-visible {
   flex-shrink: 0;
 }
 
-/* Corridor Image Showcase (Reduced height by 60–80px on desktop per Section D: max-height: 410px) */
+/* Corridor Image Showcase (Optimized responsive showcase matching 400x419 rendered size) */
 .corridor-frame {
   width: 100%;
-  max-width: 520px;
+  max-width: 400px;
   margin: 0 auto 2.5rem;
   position: relative;
   border-radius: 6px;
@@ -414,7 +416,7 @@ input:focus-visible {
 .corridor-img {
   width: 100%;
   height: auto;
-  aspect-ratio: 743 / 778;
+  aspect-ratio: 400 / 419;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -422,7 +424,7 @@ input:focus-visible {
 
 .corridor-caption {
   background: var(--warm-linen);
-  border-top: 1px solid rgba(158, 109, 83, 0.3);
+  border-top: 1px solid var(--border-subtle);
   padding: 0.85rem 1.25rem;
   font-family: var(--font-heading);
   font-size: 0.75rem; /* >= 12px */
