@@ -116,4 +116,115 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Gallery Lightbox Modal
+  const galleryCardBtns = document.querySelectorAll('.gallery-card-btn');
+  const lightbox = document.getElementById('gallery-lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+
+  const galleryItems = [
+    {
+      webp: '/gal/gallery-1-1200.webp',
+      jpg: '/gal/gallery-1-1200.jpg',
+      alt: 'SANKĀRA hotel suite photograph 1'
+    },
+    {
+      webp: '/gal/gallery-2-1200.webp',
+      jpg: '/gal/gallery-2-1200.jpg',
+      alt: 'SANKĀRA hotel suite photograph 2'
+    },
+    {
+      webp: '/gal/gallery-3-1200.webp',
+      jpg: '/gal/gallery-3-1200.jpg',
+      alt: 'SANKĀRA hotel suite photograph 3'
+    },
+    {
+      webp: '/gal/gallery-4-1200.webp',
+      jpg: '/gal/gallery-4-1200.jpg',
+      alt: 'SANKĀRA hotel suite photograph 4'
+    }
+  ];
+
+  let currentGalleryIndex = 0;
+  let lastFocusedElement = null;
+
+  function setLightboxItem(index) {
+    if (index < 0) index = galleryItems.length - 1;
+    if (index >= galleryItems.length) index = 0;
+    currentGalleryIndex = index;
+
+    const item = galleryItems[currentGalleryIndex];
+    if (lightboxImg) {
+      lightboxImg.src = item.webp;
+      lightboxImg.alt = item.alt;
+    }
+    if (lightboxCounter) lightboxCounter.textContent = `${currentGalleryIndex + 1} / ${galleryItems.length}`;
+  }
+
+  function openLightboxModal(index) {
+    lastFocusedElement = document.activeElement;
+    setLightboxItem(index);
+    if (lightbox) {
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (lightboxClose) lightboxClose.focus();
+    }
+  }
+
+  function closeLightboxModal() {
+    if (lightbox) {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
+      }
+    }
+  }
+
+  if (galleryCardBtns.length && lightbox) {
+    galleryCardBtns.forEach((btn, idx) => {
+      btn.addEventListener('click', () => openLightboxModal(idx));
+    });
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', closeLightboxModal);
+    }
+
+    if (lightboxPrev) {
+      lightboxPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setLightboxItem(currentGalleryIndex - 1);
+      });
+    }
+
+    if (lightboxNext) {
+      lightboxNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setLightboxItem(currentGalleryIndex + 1);
+      });
+    }
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target.classList.contains('lightbox-backdrop-click')) {
+        closeLightboxModal();
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') {
+        closeLightboxModal();
+      } else if (e.key === 'ArrowLeft') {
+        setLightboxItem(currentGalleryIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        setLightboxItem(currentGalleryIndex + 1);
+      }
+    });
+  }
 });
