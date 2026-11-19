@@ -532,8 +532,11 @@ input:focus-visible {
 }
 
 .meta-directions-link .link-arrow {
-  display: inline-block;
-  font-size: 0.9em;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 2;
   transition: transform var(--transition-smooth);
 }
 
